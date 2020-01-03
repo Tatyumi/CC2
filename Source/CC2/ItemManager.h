@@ -31,7 +31,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* StaticMeshComponent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 		UPlayModeWidget* playModeWidget;
 
 private:
