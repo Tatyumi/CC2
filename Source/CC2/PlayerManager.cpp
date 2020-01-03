@@ -59,7 +59,7 @@ void APlayerManager::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerManager::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &APlayerManager::EndJump);
 
-	// ƒJƒƒ‰‰ñ“]ˆ—
+	// Ž‹“_‰ñ“]ˆ—
 	PlayerInputComponent->BindAxis("RotateView", this, &APlayerManager::RotateView);
 }
 
