@@ -9,8 +9,6 @@ APlayerManager::APlayerManager()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-	//RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
-
 	// スプリングアームコンポーネント生成
 	MainCameraSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MainCameraSpringArm"));
 
@@ -61,6 +59,9 @@ void APlayerManager::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	// 視点回転処理
 	PlayerInputComponent->BindAxis("RotateView", this, &APlayerManager::RotateView);
+
+	// 視点初期化処理
+	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &APlayerManager::InitializeView);
 }
 
 // 前後移動
@@ -93,4 +94,10 @@ void APlayerManager::EndJump()
 void APlayerManager::RotateView(float Value)
 {
 	MainCameraSpringArm->AddRelativeRotation(FRotator(0, Value, 0));
+}
+
+// 視点位置初期化処理
+void APlayerManager::InitializeView()
+{
+	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, 0.0f, 0.0f));
 }

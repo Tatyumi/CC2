@@ -34,6 +34,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	UFUNCTION()
+		void InitializeView();
+
 	// ‘OŒãˆÚ“®
 	UFUNCTION()
 		void MoveForward(float Value);
@@ -53,4 +57,5 @@ public:
 	// ‹“_‰ñ“]ˆ—
 	UFUNCTION()
 		void RotateView(float Value);
+
 };
