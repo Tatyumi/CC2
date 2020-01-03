@@ -34,6 +34,7 @@ void UPlayModeWidget::DisplayAddScore(int Value)
 	{
 		if (ScoreState)
 		{
+			// ƒXƒRƒA‰ÁŽZ
 			ScoreState->AddScore(Value);
 
 			ScoreText->SetText(FText::AsNumber(ScoreState->GetScore()));

@@ -13,6 +13,7 @@ void ATestUMGController::BeginPlay()
 
 		if (PlayModeWidget)
 		{
+			// UI‚ð‰æ–Ê‚É•\Ž¦
 			PlayModeWidget->AddToViewport();
 		}
 	}
