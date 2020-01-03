@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/TextBlock.h"
-//#include "ScoreManager.h"
 #include "ScoreState.h"
 #include "Blueprint/UserWidget.h"
 #include "PlayModeWidget.generated.h"
