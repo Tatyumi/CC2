@@ -92,5 +92,5 @@ void APlayerManager::EndJump()
 // Ž‹“_‰ñ“]ˆ—
 void APlayerManager::RotateView(float Value)
 {
-	MainCameraSpringArm->AddRelativeRotation(FRotator(0,Value,0));
+	MainCameraSpringArm->AddRelativeRotation(FRotator(0, Value, 0));
 }
