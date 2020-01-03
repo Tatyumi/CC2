@@ -23,7 +23,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 		USpringArmComponent* MainCameraSpringArm;
-		UCameraComponent* MainCameraComponent;
+
+	UPROPERTY(EditAnywhere)
+	UCameraComponent* MainCameraComponent;
 
 public:
 	// Called every frame
