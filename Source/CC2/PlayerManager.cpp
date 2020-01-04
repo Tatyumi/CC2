@@ -15,17 +15,15 @@ APlayerManager::APlayerManager()
 	MainCameraSpringArm->SetupAttachment(RootComponent);
 	MainCameraSpringArm->TargetArmLength = 400.0f;
 	MainCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(-10.0f, 0.0f, 0.0f));
-	MainCameraSpringArm->bEnableCameraLag = true;
 	MainCameraSpringArm->CameraLagSpeed = 3.0f;
-	MainCameraSpringArm->bUsePawnControlRotation = false;
+	MainCameraSpringArm->bEnableCameraLag = true;
+	MainCameraSpringArm->bUsePawnControlRotation = true;
 	MainCameraSpringArm->bInheritYaw = false;
 	MainCameraSpringArm->bInheritPitch = true;
 	MainCameraSpringArm->bInheritRoll = true;
 
 	// コンポーネント生成
 	MainCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("MainCamera"));
-	// ポーンが回転制御
-	//MainCameraComponent->bUsePawnControlRotation = true;
 	// スプリングアームにアタッチ
 	MainCameraComponent->SetupAttachment(MainCameraSpringArm, USpringArmComponent::SocketName);
 }
@@ -41,7 +39,6 @@ void APlayerManager::BeginPlay()
 void APlayerManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -93,11 +90,11 @@ void APlayerManager::EndJump()
 // 視点回転処理
 void APlayerManager::RotateView(float Value)
 {
-	MainCameraSpringArm->AddRelativeRotation(FRotator(0, Value, 0));
+	MainCameraSpringArm->AddRelativeRotation(FRotator(0.0f, Value, 0.0f));
 }
 
 // 視点位置初期化処理
 void APlayerManager::InitializeView()
 {
-	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, 0.0f, 0.0f));
+	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, GetActorRotation().Yaw,0.0f ));
 }
