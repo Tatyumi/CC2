@@ -11,7 +11,9 @@ void UPlayModeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	// ƒ[ƒ‹ƒh‚©‚çAScoreState‚ðŽæ“¾
 	ScoreState = GetWorld() != NULL ? GetWorld()->GetGameState<AScoreState>() : NULL;
+
 	DisplayScore();
 }
 

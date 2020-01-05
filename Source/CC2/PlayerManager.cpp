@@ -96,5 +96,6 @@ void APlayerManager::RotateView(float Value)
 // 視点初期化処理
 void APlayerManager::ResetView()
 {
+	// プレイヤーの真後ろに配置するように角度を設定
 	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, GetActorRotation().Yaw, 0.0f));
 }
