@@ -35,8 +35,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
+	// ‹“_‰Šú‰»
 	UFUNCTION()
-		void InitializeView();
+		void ResetView();
 
 	// ‘OŒãˆÚ“®
 	UFUNCTION()

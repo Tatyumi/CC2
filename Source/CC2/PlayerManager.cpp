@@ -58,7 +58,7 @@ void APlayerManager::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("RotateView", this, &APlayerManager::RotateView);
 
 	// 視点初期化処理
-	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &APlayerManager::InitializeView);
+	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &APlayerManager::ResetView);
 }
 
 // 前後移動
@@ -93,8 +93,8 @@ void APlayerManager::RotateView(float Value)
 	MainCameraSpringArm->AddRelativeRotation(FRotator(0.0f, Value, 0.0f));
 }
 
-// 視点位置初期化処理
-void APlayerManager::InitializeView()
+// 視点初期化処理
+void APlayerManager::ResetView()
 {
-	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, GetActorRotation().Yaw,0.0f ));
+	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, GetActorRotation().Yaw, 0.0f));
 }
