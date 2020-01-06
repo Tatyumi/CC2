@@ -2,11 +2,14 @@
 
 #pragma once
 
-#include "PlayModeWidget.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/BoxComponent.h"
 #include "ItemManager.generated.h"
+
+class UBoxComponent;
+class UStaticMeshComponent;
+class UPlayModeWidget;
+
 
 UCLASS()
 class CC2_API AItemManager : public AActor

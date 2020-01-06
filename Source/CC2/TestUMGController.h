@@ -4,12 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "Blueprint/UserWidget.h"
 #include "TestUMGController.generated.h"
 
-/**
- *
- */
+class UUserWidget;
+
 UCLASS()
 class CC2_API ATestUMGController : public APlayerController
 {

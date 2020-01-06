@@ -3,14 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/TextBlock.h"
-#include "ScoreState.h"
 #include "Blueprint/UserWidget.h"
 #include "PlayModeWidget.generated.h"
 
-/**
- *
- */
+class AScoreState;
+class UTextBlock;
+
 UCLASS()
 class CC2_API UPlayModeWidget : public UUserWidget
 {
@@ -37,6 +35,4 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void NativeConstruct() override;
-
-
 };

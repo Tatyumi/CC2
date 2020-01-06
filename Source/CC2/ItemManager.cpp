@@ -4,6 +4,8 @@
 #include "ItemManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "TestUMGController.h"
+#include "PlayModeWidget.h"
+#include "Components/BoxComponent.h"
 
 // ‰ñ“]‘¬“x
 static const float ROTATIOM_SPEED = 1.0f;

@@ -2,6 +2,8 @@
 
 
 #include "PlayModeWidget.h"
+#include "Components/TextBlock.h"
+#include "ScoreState.h"
 
 UPlayModeWidget::UPlayModeWidget(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
 {

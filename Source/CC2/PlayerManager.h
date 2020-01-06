@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Camera/CameraComponent.h"
-#include "GameFramework/SpringArmComponent.h"
 #include "PlayerManager.generated.h"
+
+class USpringArmComponent;
+class UCameraComponent;
 
 UCLASS()
 class CC2_API APlayerManager : public ACharacter
@@ -25,7 +26,7 @@ protected:
 		USpringArmComponent* MainCameraSpringArm;
 
 	UPROPERTY(EditAnywhere)
-	UCameraComponent* MainCameraComponent;
+		UCameraComponent* MainCameraComponent;
 
 public:
 	// Called every frame

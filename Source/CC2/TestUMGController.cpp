@@ -2,6 +2,8 @@
 
 
 #include "TestUMGController.h"
+#include "Blueprint/UserWidget.h"
+
 
 void ATestUMGController::BeginPlay()
 {

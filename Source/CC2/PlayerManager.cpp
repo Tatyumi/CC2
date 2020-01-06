@@ -2,6 +2,8 @@
 
 #include "PlayerManager.h"
 #include "CC2GameModeBase.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 // スプリングアームのX軸角度
 static const float SPRINGARM_PITCH = -10.0f;
