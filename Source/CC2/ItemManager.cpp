@@ -16,21 +16,26 @@ AItemManager::AItemManager()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// コンポーネント生成
+	// ボックスコンポーネント生成
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	if (BoxComponent)
+	{
+		BoxComponent->SetSimulatePhysics(false);
+		BoxComponent->SetCollisionProfileName(TEXT("Item"));
+		BoxComponent->SetGenerateOverlapEvents(true);
+		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AItemManager::TriggerEnter);
+	}
+
+	// スタティックコンポーネント生成
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-
-	// 物理シュミレーション無効
-	BoxComponent->SetSimulatePhysics(false);
-	BoxComponent->SetCollisionProfileName(TEXT("Item"));
-
-
 	if (StaticMeshComponent)
 	{
 		StaticMeshComponent->SetSimulatePhysics(false);
-		StaticMeshComponent->AttachTo(BoxComponent);
-		BoxComponent->SetGenerateOverlapEvents(true);
-		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AItemManager::TriggerEnter);
+
+		if (BoxComponent)
+		{
+			StaticMeshComponent->AttachTo(BoxComponent);
+		}
 	}
 
 	Point = 100;

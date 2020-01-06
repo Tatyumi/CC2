@@ -17,27 +17,36 @@ APlayerManager::APlayerManager()
 	// スプリングアームコンポーネント生成
 	MainCameraSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MainCameraSpringArm"));
 
-	MainCameraSpringArm->SetupAttachment(RootComponent);
-	MainCameraSpringArm->TargetArmLength = 400.0f;
-	MainCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(SPRINGARM_PITCH, 0.0f, 0.0f));
-	MainCameraSpringArm->CameraLagSpeed = 3.0f;
-	MainCameraSpringArm->bEnableCameraLag = true;
-	MainCameraSpringArm->bUsePawnControlRotation = true;
-	MainCameraSpringArm->bInheritYaw = false;
-	MainCameraSpringArm->bInheritPitch = true;
-	MainCameraSpringArm->bInheritRoll = true;
+	if (MainCameraSpringArm)
+	{
+		MainCameraSpringArm->SetupAttachment(RootComponent);
+		MainCameraSpringArm->TargetArmLength = 400.0f;
+		MainCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(SPRINGARM_PITCH, 0.0f, 0.0f));
+		MainCameraSpringArm->CameraLagSpeed = 3.0f;
+		MainCameraSpringArm->bEnableCameraLag = true;
+		MainCameraSpringArm->bUsePawnControlRotation = true;
+		MainCameraSpringArm->bInheritYaw = false;
+		MainCameraSpringArm->bInheritPitch = true;
+		MainCameraSpringArm->bInheritRoll = true;
+	}
 
-	// コンポーネント生成
+	// メインカメラコンポーネント生成
 	MainCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("MainCamera"));
-	// スプリングアームにアタッチ
-	MainCameraComponent->SetupAttachment(MainCameraSpringArm, USpringArmComponent::SocketName);
+
+	if (MainCameraComponent)
+	{
+		if (MainCameraSpringArm)
+		{
+			// スプリングアームにアタッチ
+			MainCameraComponent->SetupAttachment(MainCameraSpringArm, USpringArmComponent::SocketName);
+		}
+	}
 }
 
 // Called when the game starts or when spawned
 void APlayerManager::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
