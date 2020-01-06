@@ -3,6 +3,9 @@
 #include "PlayerManager.h"
 #include "CC2GameModeBase.h"
 
+// スプリングアームのX軸角度
+static const float SPRINGARM_PITCH = -10.0f;
+
 // Sets default values
 APlayerManager::APlayerManager()
 {
@@ -14,7 +17,7 @@ APlayerManager::APlayerManager()
 
 	MainCameraSpringArm->SetupAttachment(RootComponent);
 	MainCameraSpringArm->TargetArmLength = 400.0f;
-	MainCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(-10.0f, 0.0f, 0.0f));
+	MainCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(SPRINGARM_PITCH, 0.0f, 0.0f));
 	MainCameraSpringArm->CameraLagSpeed = 3.0f;
 	MainCameraSpringArm->bEnableCameraLag = true;
 	MainCameraSpringArm->bUsePawnControlRotation = true;
@@ -97,5 +100,5 @@ void APlayerManager::RotateView(float Value)
 void APlayerManager::ResetView()
 {
 	// プレイヤーの真後ろに配置するように角度を設定
-	MainCameraSpringArm->SetRelativeRotation(FRotator(-10.0f, GetActorRotation().Yaw, 0.0f));
+	MainCameraSpringArm->SetRelativeRotation(FRotator(SPRINGARM_PITCH, GetActorRotation().Yaw, 0.0f));
 }

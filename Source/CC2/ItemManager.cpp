@@ -5,6 +5,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "TestUMGController.h"
 
+// ‰ñ“]‘¬“x
+static const float ROTATIOM_SPEED = 1.0f;
+
 // Sets default values
 AItemManager::AItemManager()
 {
@@ -45,7 +48,7 @@ void AItemManager::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// ‰ñ“]
-	AddActorWorldRotation(FRotator(0.0f, 1.0f, 0.0f));
+	AddActorWorldRotation(FRotator(0.0f, ROTATIOM_SPEED, 0.0f));
 }
 
 void AItemManager::TriggerEnter( UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
