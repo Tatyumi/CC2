@@ -26,5 +26,5 @@ public:
 private:
 
 	UPROPERTY()
-		int CurrentScore;
+		uint32 CurrentScore;
 };
