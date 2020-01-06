@@ -6,9 +6,6 @@
 #include "GameFramework/GameStateBase.h"
 #include "ScoreState.generated.h"
 
-/**
- *
- */
 UCLASS()
 class CC2_API AScoreState : public AGameStateBase
 {
