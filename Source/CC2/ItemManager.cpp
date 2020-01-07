@@ -23,7 +23,6 @@ AItemManager::AItemManager()
 		BoxComponent->SetSimulatePhysics(false);
 		BoxComponent->SetCollisionProfileName(TEXT("Item"));
 		BoxComponent->SetGenerateOverlapEvents(true);
-		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AItemManager::TriggerEnter);
 	}
 
 	// スタティックコンポーネント生成
@@ -58,15 +57,15 @@ void AItemManager::Tick(float DeltaTime)
 	AddActorWorldRotation(FRotator(0.0f, ROTATIOM_SPEED, 0.0f));
 }
 
-void AItemManager::TriggerEnter( UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+// アイテム取得処理
+void AItemManager::Pickedup(UPlayModeWidget* PlayModeWidget)
 {
 	// スコア加算処理
-	ATestUMGController* testUMGController = Cast<ATestUMGController>(UGameplayStatics::GetPlayerController(this, 0));
-	playModeWidget = Cast<UPlayModeWidget>(testUMGController->PlayModeWidget);
-	if (playModeWidget)
+	if (PlayModeWidget == nullptr)
 	{
-		playModeWidget->DisplayAddScore(Point);
+		return;
 	}
 
+	PlayModeWidget->DisplayAddScore(Point);
 	Destroy(this);
 }

@@ -34,14 +34,11 @@ public:
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* StaticMeshComponent;
 
-	UPROPERTY()
-		UPlayModeWidget* playModeWidget;
+	// ƒAƒCƒeƒ€æ“¾ˆ—
+	UFUNCTION()
+		void Pickedup(UPlayModeWidget* PlayModeWidget);
 
 private:
-
-	// Õ“Ëˆ—
-	UFUNCTION()
-		void TriggerEnter(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 
 	UPROPERTY()
 		uint32 Point;

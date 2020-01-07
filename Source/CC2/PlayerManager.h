@@ -8,6 +8,8 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UPlayModeWidget;
+class ATestUMGController;
 
 UCLASS()
 class CC2_API APlayerManager : public ACharacter
@@ -27,6 +29,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 		UCameraComponent* MainCameraComponent;
+
+	UPROPERTY(EditAnywhere)
+		UCapsuleComponent* PlayerCollision;
 
 public:
 	// Called every frame
@@ -60,4 +65,7 @@ private:
 	UFUNCTION()
 		void RotateView(float Value);
 
+	// è’ìÀèàóù
+	UFUNCTION()
+		void TriggerEnter(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 };

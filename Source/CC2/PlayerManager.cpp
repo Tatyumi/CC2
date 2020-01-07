@@ -4,6 +4,11 @@
 #include "CC2GameModeBase.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "ItemManager.h"
+#include "PlayModeWidget.h"
+#include "TestUMGController.h"
+#include "Kismet/GameplayStatics.h"
 
 // スプリングアームのX軸角度
 static const float SPRINGARM_PITCH = -10.0f;
@@ -40,6 +45,13 @@ APlayerManager::APlayerManager()
 			// スプリングアームにアタッチ
 			MainCameraComponent->SetupAttachment(MainCameraSpringArm, USpringArmComponent::SocketName);
 		}
+	}
+
+	// カプセルコンポーネントを取得
+	PlayerCollision = APlayerManager::GetCapsuleComponent();
+	if (PlayerCollision)
+	{
+		PlayerCollision->OnComponentBeginOverlap.AddDynamic(this, &APlayerManager::TriggerEnter);
 	}
 }
 
@@ -112,4 +124,30 @@ void APlayerManager::ResetView()
 {
 	// プレイヤーの真後ろに配置するように角度を設定
 	MainCameraSpringArm->SetRelativeRotation(FRotator(SPRINGARM_PITCH, GetActorRotation().Yaw, 0.0f));
+}
+
+void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	// 接触したActorのチェック
+	if ((OtherActor == nullptr) && (OtherActor == this) && (OtherComp == nullptr))
+	{
+		return;
+	}
+
+	// Actorのタグチェック
+	if (OtherActor->ActorHasTag(FName("Item")))
+	{
+		// Itemの場合
+
+		AItemManager* item = Cast<AItemManager>(OtherActor);
+
+		if (item)
+		{
+			// アイテムアクタのPickedup関数を実行
+
+			ATestUMGController* testUMGController = Cast<ATestUMGController>(UGameplayStatics::GetPlayerController(this, 0));
+			UPlayModeWidget* playModeWidget = Cast<UPlayModeWidget>(testUMGController->PlayModeWidget);
+			item->Pickedup(playModeWidget);
+		}
+	}
 }
