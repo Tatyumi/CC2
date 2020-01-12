@@ -18,8 +18,8 @@ public:
 	ULevelMover();
 
 	// Žw’è‚µ‚½ƒŒƒxƒ‹‚É‘JˆÚ
-	UFUNCTION()
-		void MoveLevel(int Id);
+	UFUNCTION(meta = (WorldContext = WorldContextObject))
+		void MoveLevel(const UObject* WorldContextObject, int Id);
 
 private:
 

@@ -5,6 +5,7 @@
 #include "Engine/DataTable.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine.h"
 
 ULevelMover::ULevelMover()
 {
@@ -18,7 +19,7 @@ ULevelMover::ULevelMover()
 }
 
 // Žw’è‚µ‚½ƒŒƒxƒ‹‚É‘JˆÚ
-void ULevelMover::MoveLevel(int Id)
+void ULevelMover::MoveLevel(const UObject* WorldContextObject, int Id)
 {
 	if (!LevelTable)
 	{
@@ -39,9 +40,12 @@ void ULevelMover::MoveLevel(int Id)
 			// Žw’è‚ÌID‚Ìê‡
 
 			// ƒŒƒxƒ‹‚ð‘JˆÚ‚·‚é
-			// TODO:‘JˆÚ‚µ‚È‚¢‚½‚ß’²¸‚·‚é
-			UGameplayStatics::OpenLevel(GetWorld(), record->LevelName);
-			return;
+			UWorld* world = GEngine->GetWorldFromContextObject(WorldContextObject);
+			if (world)
+			{
+				UGameplayStatics::OpenLevel(world, record->LevelName);
+				return;
+			}
 		}
 	}
 }
