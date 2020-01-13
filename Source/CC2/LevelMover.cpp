@@ -10,7 +10,7 @@
 ULevelMover::ULevelMover()
 {
 	static ConstructorHelpers::FObjectFinder<UDataTable>
-		LevelDataObject(TEXT("/Game/Blueprints/BP_DataTable"));
+		LevelDataObject(TEXT("/Game/Blueprints/BP_LevelData"));
 
 	if (LevelDataObject.Succeeded())
 	{
