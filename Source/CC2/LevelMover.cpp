@@ -19,7 +19,7 @@ ULevelMover::ULevelMover()
 }
 
 // Žw’è‚µ‚½ƒŒƒxƒ‹‚É‘JˆÚ
-void ULevelMover::MoveLevel(const UObject* WorldContextObject, int Id)
+void ULevelMover::MoveLevel(const UObject* World, int Id)
 {
 	if (!LevelTable)
 	{
@@ -40,10 +40,9 @@ void ULevelMover::MoveLevel(const UObject* WorldContextObject, int Id)
 			// Žw’è‚ÌID‚Ìê‡
 
 			// ƒŒƒxƒ‹‚ð‘JˆÚ‚·‚é
-			UWorld* world = GEngine->GetWorldFromContextObject(WorldContextObject);
-			if (world)
+			if (World)
 			{
-				UGameplayStatics::OpenLevel(world, record->LevelName);
+				UGameplayStatics::OpenLevel(World, record->LevelName);
 				return;
 			}
 		}
