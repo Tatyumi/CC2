@@ -7,8 +7,9 @@
 #include "Components/CapsuleComponent.h"
 #include "ItemManager.h"
 #include "PlayModeWidget.h"
-#include "TestUMGController.h"
+#include "LevelMover.h"
 #include "Kismet/GameplayStatics.h"
+
 
 // スプリングアームのX軸角度
 static const float SPRINGARM_PITCH = -10.0f;
@@ -143,11 +144,7 @@ void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AAct
 
 		if (item)
 		{
-			// アイテムアクタのPickedup関数を実行
-
-			ATestUMGController* testUMGController = Cast<ATestUMGController>(UGameplayStatics::GetPlayerController(this, 0));
-			UPlayModeWidget* playModeWidget = Cast<UPlayModeWidget>(testUMGController->PlayModeWidget);
-			item->Pickedup(playModeWidget);
+			item->Pickedup();
 		}
 	}
 }

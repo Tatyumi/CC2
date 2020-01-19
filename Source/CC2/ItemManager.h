@@ -8,8 +8,6 @@
 
 class UBoxComponent;
 class UStaticMeshComponent;
-class UPlayModeWidget;
-
 
 UCLASS()
 class CC2_API AItemManager : public AActor
@@ -36,7 +34,7 @@ public:
 
 	// ƒAƒCƒeƒ€æ“¾ˆ—
 	UFUNCTION()
-		void Pickedup(UPlayModeWidget* PlayModeWidget);
+		void Pickedup();
 
 private:
 

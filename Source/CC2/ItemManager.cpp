@@ -3,9 +3,10 @@
 
 #include "ItemManager.h"
 #include "Kismet/GameplayStatics.h"
-#include "TestUMGController.h"
 #include "PlayModeWidget.h"
+#include "CC2GameModeBase.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // 回転速度
 static const float ROTATIOM_SPEED = 1.0f;
@@ -13,7 +14,7 @@ static const float ROTATIOM_SPEED = 1.0f;
 // Sets default values
 AItemManager::AItemManager()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// ボックスコンポーネント生成
@@ -58,14 +59,25 @@ void AItemManager::Tick(float DeltaTime)
 }
 
 // アイテム取得処理
-void AItemManager::Pickedup(UPlayModeWidget* PlayModeWidget)
+void AItemManager::Pickedup()
 {
-	// スコア加算処理
+	ACC2GameModeBase* gameMode = Cast<ACC2GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if (gameMode == nullptr)
+	{
+		return;
+	}
+
+	// TODO Castが可能かどうか判別式が必要かも
+
+	UPlayModeWidget* PlayModeWidget = Cast<UPlayModeWidget>(gameMode->GetCurrentWidget());
+
 	if (PlayModeWidget == nullptr)
 	{
 		return;
 	}
 
+	// スコア加算処理
 	PlayModeWidget->DisplayAddScore(Point);
 	Destroy(this);
 }
