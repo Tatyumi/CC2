@@ -22,18 +22,18 @@ void UPlayModeWidget::NativeConstruct()
 // スコア表示
 void UPlayModeWidget::DisplayScore()
 {
-	if (ScoreText == nullptr || ScoreState == nullptr)
+	if (ScoreTxt == nullptr || ScoreState == nullptr)
 	{
 		return;
 	}
 
-	ScoreText->SetText(FText::AsNumber(ScoreState->GetScore()));
+	ScoreTxt->SetText(FText::AsNumber(ScoreState->GetScore()));
 }
 
 // 加算後のスコア表示
 void UPlayModeWidget::DisplayAddScore(int Value)
 {
-	if (ScoreText == nullptr || ScoreState == nullptr)
+	if (ScoreTxt == nullptr || ScoreState == nullptr)
 	{
 		return;
 	}
@@ -41,5 +41,5 @@ void UPlayModeWidget::DisplayAddScore(int Value)
 	// スコア加算
 	ScoreState->AddScore(Value);
 
-	ScoreText->SetText(FText::AsNumber(ScoreState->GetScore()));
+	ScoreTxt->SetText(FText::AsNumber(ScoreState->GetScore()));
 }
