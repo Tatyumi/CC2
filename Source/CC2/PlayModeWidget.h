@@ -26,8 +26,8 @@ public:
 	UFUNCTION()
 		void DisplayAddScore(int Value);
 
-	UPROPERTY(EditAnywhere)
-		UTextBlock* ScoreText;
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
+		UTextBlock* ScoreTxt;
 
 	UPROPERTY()
 		AScoreState* ScoreState;
