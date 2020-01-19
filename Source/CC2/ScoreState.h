@@ -17,7 +17,7 @@ public:
 
 	// スコア取得
 	UFUNCTION()
-		int GetScore() { return CurrentScore; }
+		int GetScore()const { return CurrentScore; }
 
 	// スコア加算
 	UFUNCTION()
