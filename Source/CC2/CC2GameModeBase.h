@@ -6,9 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "CC2GameModeBase.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class CC2_API ACC2GameModeBase : public AGameModeBase
 {
@@ -17,4 +15,14 @@ class CC2_API ACC2GameModeBase : public AGameModeBase
 public:
 	// コンストラクタ
 	ACC2GameModeBase();
+
+	UFUNCTION()
+		void SetCurrentWidget(UUserWidget* CurrentWidget) { this->CurrentWidget = CurrentWidget; }
+
+	UFUNCTION()
+		UUserWidget* GetCurrentWidget()const { return CurrentWidget; }
+
+private:
+	UPROPERTY()
+		UUserWidget* CurrentWidget;
 };
