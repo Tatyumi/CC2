@@ -11,11 +11,11 @@
  */
 
 UENUM()
-enum ELevels
+enum class ELevels : uint8
 {
 	LEVEL_TITLE			UMETA(DisplayName = "Title"),
 	LEVEL_STAGE_ONE		UMETA(DisplayName = "Stage01"),
-	LEVEL_TEST_MAP		UMETA(DisplayName = "TestMap")
+	LEVEL_GAMEOVER		UMETA(DisplayName = "GameOver")
 };
 
 USTRUCT()
