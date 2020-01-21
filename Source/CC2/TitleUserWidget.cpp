@@ -21,6 +21,5 @@ void UTitleUserWidget::NativeConstruct()
 void UTitleUserWidget::MoveGameLevel()
 {
 	ULevelMover* levelMover = NewObject<ULevelMover>();
-	//levelMover->MoveLevel(GetWorld(), 1);
 	levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_STAGE_ONE));
 }
