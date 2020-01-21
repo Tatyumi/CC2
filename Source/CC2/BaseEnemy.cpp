@@ -2,13 +2,20 @@
 
 
 #include "BaseEnemy.h"
+#include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABaseEnemy::ABaseEnemy()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	// カプセルコンポーネントを取得
+	EnemyCollision = ABaseEnemy::GetCapsuleComponent();
+	if (EnemyCollision)
+	{
+		EnemyCollision->SetCollisionProfileName(TEXT("Enemy"));
+	}
 }
 
 // Called when the game starts or when spawned

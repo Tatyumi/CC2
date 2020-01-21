@@ -2,13 +2,17 @@
 
 #include "PlayerManager.h"
 #include "CC2GameModeBase.h"
+
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "ItemManager.h"
 #include "PlayModeWidget.h"
 #include "LevelMover.h"
-#include "Kismet/GameplayStatics.h"
+#include "LevelTable.h"
+#include "BaseEnemy.h"
 
 
 // スプリングアームのX軸角度
@@ -146,5 +150,22 @@ void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AAct
 		{
 			item->Pickedup();
 		}
+		return;
+	}
+	else if (OtherActor->ActorHasTag(FName("Enemy")))
+	{
+		// Enemyの場合
+
+		ABaseEnemy* enemy = Cast<ABaseEnemy>(OtherActor);
+
+		if (enemy)
+		{
+			// TODO 死亡処理
+
+			// ゲームオーバー画面に遷移
+			ULevelMover* levelMover = NewObject<ULevelMover>();
+			levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_GAMEOVER));
+		}
+		return;
 	}
 }
