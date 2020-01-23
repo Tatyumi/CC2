@@ -7,6 +7,7 @@
 #include "BaseEnemy.generated.h"
 
 class UCapsuleComponent;
+class AActor;
 
 UCLASS()
 class CC2_API ABaseEnemy : public ACharacter
@@ -29,7 +30,26 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
+	UFUNCTION()
+		void MoveSpecifiedPos(FVector SpecifiedPos, float moveSpeed, float DeltaTime);
+
+private:
+	UPROPERTY()
+		UCapsuleComponent* EnemyCollision;
+
+	UPROPERTY()
+		bool IsWait = true;
+
+	UPROPERTY()
+		FVector HomePos;
+
+	UPROPERTY()
+		FRotator InitializeRotate;
+
+protected:
+	UPROPERTY(EditAnywhere)
+		float MoveSpeed = 2.0f;
 
 	UPROPERTY(EditAnywhere)
-		UCapsuleComponent* EnemyCollision;
+		float BackSpeed = 1.0f;
 };
