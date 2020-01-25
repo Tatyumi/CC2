@@ -82,8 +82,8 @@ void ABaseEnemy::Tick(float DeltaTime)
 		MoveSpecifiedPos(HomePos, BackSpeed, DeltaTime);
 
 		// ‰ŠúˆÊ’u‚É’H‚è’…‚¢‚½‚©”»•Ê
-		if (EnemyCollision->GetComponentLocation().X - HomePos.X <= 1.0f
-			&& EnemyCollision->GetComponentLocation().Y - HomePos.Y <= 1.0f)
+		if (HomePos.X - EnemyCollision->GetComponentLocation().X <= 1.0f
+			&& HomePos.Y - EnemyCollision->GetComponentLocation().Y <= 1.0f)
 		{
 			// ’H‚è’…‚¢‚½ê‡
 
@@ -98,7 +98,6 @@ void ABaseEnemy::Tick(float DeltaTime)
 void ABaseEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 // Žw’è‚ÌÀ•W‚ÉˆÚ“®‚·‚é
