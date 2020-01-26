@@ -139,33 +139,25 @@ void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AAct
 		return;
 	}
 
-	// Actorのタグチェック
-	if (OtherActor->ActorHasTag(FName("Item")))
+	AItemManager* item = Cast<AItemManager>(OtherActor);
+
+	// OtherActorがItemの場合
+	if (item)
 	{
-		// Itemの場合
-
-		AItemManager* item = Cast<AItemManager>(OtherActor);
-
-		if (item)
-		{
-			item->Pickedup();
-		}
+		item->Pickedup();
 		return;
 	}
-	else if (OtherActor->ActorHasTag(FName("Enemy")))
+	// Enemyの場合
+
+	ABaseEnemy* enemy = Cast<ABaseEnemy>(OtherActor);
+
+	// OtherActorがEnemyの場合
+	if (enemy)
 	{
-		// Enemyの場合
+		// ゲームオーバー画面に遷移
+		ULevelMover* levelMover = NewObject<ULevelMover>();
+		levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_GAMEOVER));
 
-		ABaseEnemy* enemy = Cast<ABaseEnemy>(OtherActor);
-
-		if (enemy)
-		{
-			// TODO 死亡処理
-
-			// ゲームオーバー画面に遷移
-			ULevelMover* levelMover = NewObject<ULevelMover>();
-			levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_GAMEOVER));
-		}
 		return;
 	}
 }
