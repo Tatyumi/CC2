@@ -13,6 +13,7 @@
 #include "LevelMover.h"
 #include "LevelTable.h"
 #include "BaseEnemy.h"
+#include "EventOccurable.h"
 
 
 // スプリングアームのX軸角度
@@ -139,19 +140,30 @@ void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AAct
 		return;
 	}
 
+	// OtherActor判別
+
 	AItemManager* item = Cast<AItemManager>(OtherActor);
 
-	// OtherActorがItemの場合
+	// Itemの場合
 	if (item)
 	{
 		item->Pickedup();
 		return;
 	}
-	// Enemyの場合
+
+	IEventOccurable* pointInterface = Cast<IEventOccurable>(OtherActor);
+
+	// EventPointの場合
+	if (pointInterface)
+	{
+		pointInterface->Event();
+		return;
+	}
+
 
 	ABaseEnemy* enemy = Cast<ABaseEnemy>(OtherActor);
 
-	// OtherActorがEnemyの場合
+	// Enemyの場合
 	if (enemy)
 	{
 		// ゲームオーバー画面に遷移

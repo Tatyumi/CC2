@@ -8,6 +8,7 @@
 
 class AScoreState;
 class UTextBlock;
+class UCanvasPanel;
 
 UCLASS()
 class CC2_API UPlayModeWidget : public UUserWidget
@@ -26,13 +27,30 @@ public:
 	UFUNCTION()
 		void DisplayAddScore(int Value);
 
+	// メッセージパネルの表示
+	UFUNCTION()
+		void DispMessagePnl();
+
+public:
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UTextBlock* ScoreTxt;
 
 	UPROPERTY()
 		AScoreState* ScoreState;
 
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
+		UCanvasPanel* MessagePnl;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void NativeConstruct() override;
+
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+
+private:
+
+	UPROPERTY()
+		float DispTime;
+
+	float DeltaTime;
 };
