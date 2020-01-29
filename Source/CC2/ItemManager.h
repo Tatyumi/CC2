@@ -39,5 +39,5 @@ public:
 private:
 
 	UPROPERTY()
-		uint32 Point;
+		uint32 Score;
 };

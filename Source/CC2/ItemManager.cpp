@@ -38,7 +38,7 @@ AItemManager::AItemManager()
 		}
 	}
 
-	Point = 100;
+	Score = 100;
 }
 
 // Called when the game starts or when spawned
