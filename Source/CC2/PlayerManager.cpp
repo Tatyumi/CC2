@@ -8,7 +8,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 
-#include "ItemManager.h"
+#include "BaseItem.h"
 #include "PlayModeWidget.h"
 #include "LevelMover.h"
 #include "LevelTable.h"
