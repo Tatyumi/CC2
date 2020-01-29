@@ -75,6 +75,6 @@ void AItemManager::Pickedup()
 	}
 
 	// ƒXƒRƒA‰ÁŽZˆ—
-	PlayModeWidget->DisplayAddScore(Point);
+	PlayModeWidget->DisplayAddScore(Score);
 	Destroy(this);
 }
