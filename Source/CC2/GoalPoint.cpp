@@ -2,7 +2,11 @@
 
 
 #include "GoalPoint.h"
+#include "PlayModeWidget.h"
+#include "CC2GameModeBase.h"
+
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AGoalPoint::AGoalPoint()
@@ -36,5 +40,20 @@ void AGoalPoint::Tick(float DeltaTime)
 
 void AGoalPoint::Event()
 {
-	UE_LOG(LogTemp, Warning, TEXT("EndPoint Hit!"));
+	ACC2GameModeBase* gameMode = Cast<ACC2GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if (gameMode == nullptr)
+	{
+		return;
+	}
+
+	UPlayModeWidget* PlayModeWidget = Cast<UPlayModeWidget>(gameMode->GetCurrentWidget());
+
+	if (PlayModeWidget == nullptr)
+	{
+		return;
+	}
+
+	// メッセージパネルを表示
+	PlayModeWidget->DispGameClearPnl();
 }
