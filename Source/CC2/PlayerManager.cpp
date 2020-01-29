@@ -142,7 +142,7 @@ void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AAct
 
 	// OtherActor”»•Ê
 
-	AItemManager* item = Cast<AItemManager>(OtherActor);
+	ABaseItem* item = Cast<ABaseItem>(OtherActor);
 
 	// Item‚Ìê‡
 	if (item)

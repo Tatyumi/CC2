@@ -4,19 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ItemManager.generated.h"
+#include "BaseItem.generated.h"
 
 class UBoxComponent;
 class UStaticMeshComponent;
 
 UCLASS()
-class CC2_API AItemManager : public AActor
+class CC2_API ABaseItem : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AItemManager();
+	ABaseItem();
 
 protected:
 	// Called when the game starts or when spawned

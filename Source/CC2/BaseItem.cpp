@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ItemManager.h"
+#include "BaseItem.h"
 #include "PlayModeWidget.h"
 #include "CC2GameModeBase.h"
 
@@ -12,7 +12,7 @@
 static const float ROTATIOM_SPEED = 1.0f;
 
 // Sets default values
-AItemManager::AItemManager()
+ABaseItem::ABaseItem()
 {
 	// ボックスコンポーネント生成
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
@@ -39,7 +39,7 @@ AItemManager::AItemManager()
 }
 
 // Called when the game starts or when spawned
-void AItemManager::BeginPlay()
+void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -47,7 +47,7 @@ void AItemManager::BeginPlay()
 }
 
 // Called every frame
-void AItemManager::Tick(float DeltaTime)
+void ABaseItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -56,7 +56,7 @@ void AItemManager::Tick(float DeltaTime)
 }
 
 // アイテム取得処理
-void AItemManager::Pickedup()
+void ABaseItem::Pickedup()
 {
 	ACC2GameModeBase* gameMode = Cast<ACC2GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 
