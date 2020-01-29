@@ -31,15 +31,23 @@ public:
 	UFUNCTION()
 		void DispMessagePnl();
 
+	// メッセージパネルの表示
+	UFUNCTION()
+		void DispGameClearPnl();
+
 public:
+
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
+		UCanvasPanel* MessagePnl;
+
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
+		UCanvasPanel* GameClearPnl;
+
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UTextBlock* ScoreTxt;
 
 	UPROPERTY()
 		AScoreState* ScoreState;
-
-	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
-		UCanvasPanel* MessagePnl;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,8 +57,9 @@ protected:
 
 private:
 
-	UPROPERTY()
-		float DispTime;
+	float DispTime;
 
 	float DeltaTime;
+
+	float ClaredWaitTime;
 };

@@ -3,12 +3,16 @@
 
 #include "PlayModeWidget.h"
 #include "ScoreState.h"
+#include "LevelMover.h"
 
 #include "Components/TextBlock.h"
 #include "Components/CanvasPanel.h"
 
 UPlayModeWidget::UPlayModeWidget(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
 {
+	DispTime = 4.0f;
+	DeltaTime = 0.0f;
+	ClaredWaitTime = 5.0f;
 }
 
 void UPlayModeWidget::NativeConstruct()
@@ -27,8 +31,11 @@ void UPlayModeWidget::NativeConstruct()
 		MessagePnl->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
-	DispTime = 4.0f;
-	DeltaTime = 0.0f;
+	if (GameClearPnl)
+	{
+		// ゲームクリアパネルを非表示
+		GameClearPnl->SetVisibility(ESlateVisibility::Collapsed);
+	}
 }
 
 void UPlayModeWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -46,6 +53,21 @@ void UPlayModeWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 			// メッセージパネルを非表示
 			MessagePnl->SetVisibility(ESlateVisibility::Collapsed);
 			DeltaTime = 0.0f;
+		}
+	}
+
+	// ゲームクリアパネルが表示されているか判別
+	if (GameClearPnl->Visibility == ESlateVisibility::Visible)
+	{
+		DeltaTime += InDeltaTime;
+
+		// 一定時間経過したか判別
+		if (DeltaTime >= ClaredWaitTime)
+		{
+			// 次のシーンに遷移する
+			ULevelMover* levelMover = NewObject<ULevelMover>();
+			// TODO 次のレベルを指定する仕組みを作る
+			levelMover->MoveLevel(GetWorld(),0);
 		}
 	}
 }
@@ -79,4 +101,10 @@ void UPlayModeWidget::DisplayAddScore(int Value)
 void UPlayModeWidget::DispMessagePnl()
 {
 	MessagePnl->SetVisibility(ESlateVisibility::Visible);
+}
+
+// ゲームクリアパネルを表示
+void UPlayModeWidget::DispGameClearPnl()
+{
+	GameClearPnl->SetVisibility(ESlateVisibility::Visible);
 }
