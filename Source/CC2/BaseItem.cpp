@@ -14,6 +14,8 @@ static const float ROTATIOM_SPEED = 1.0f;
 // Sets default values
 ABaseItem::ABaseItem()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	// ボックスコンポーネント生成
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	if (BoxComponent)
@@ -43,7 +45,6 @@ void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PrimaryActorTick.bCanEverTick = true;
 }
 
 // Called every frame
