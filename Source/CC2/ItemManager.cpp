@@ -14,9 +14,6 @@ static const float ROTATIOM_SPEED = 1.0f;
 // Sets default values
 AItemManager::AItemManager()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	// ボックスコンポーネント生成
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	if (BoxComponent)
