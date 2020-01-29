@@ -2,9 +2,9 @@
 
 
 #include "ItemManager.h"
-#include "Kismet/GameplayStatics.h"
 #include "PlayModeWidget.h"
 #include "CC2GameModeBase.h"
+
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -64,8 +64,6 @@ void AItemManager::Pickedup()
 	{
 		return;
 	}
-
-	// TODO Cast‚ª‰Â”\‚©‚Ç‚¤‚©”»•ÊŽ®‚ª•K—v‚©‚à
 
 	UPlayModeWidget* PlayModeWidget = Cast<UPlayModeWidget>(gameMode->GetCurrentWidget());
 
