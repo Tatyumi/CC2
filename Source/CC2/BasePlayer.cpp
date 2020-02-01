@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "PlayerManager.h"
+#include "BasePlayer.h"
 #include "CC2GameModeBase.h"
 
 #include "Camera/CameraComponent.h"
@@ -20,7 +20,7 @@
 static const float SPRINGARM_PITCH = -10.0f;
 
 // Sets default values
-APlayerManager::APlayerManager()
+ABasePlayer::ABasePlayer()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
@@ -54,85 +54,85 @@ APlayerManager::APlayerManager()
 	}
 
 	// カプセルコンポーネントを取得
-	PlayerCollision = APlayerManager::GetCapsuleComponent();
+	PlayerCollision = ABasePlayer::GetCapsuleComponent();
 	if (PlayerCollision)
 	{
-		PlayerCollision->OnComponentBeginOverlap.AddDynamic(this, &APlayerManager::TriggerEnter);
+		PlayerCollision->OnComponentBeginOverlap.AddDynamic(this, &ABasePlayer::TriggerEnter);
 	}
 }
 
 // Called when the game starts or when spawned
-void APlayerManager::BeginPlay()
+void ABasePlayer::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
 // Called every frame
-void APlayerManager::Tick(float DeltaTime)
+void ABasePlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input
-void APlayerManager::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ABasePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// 移動処理
-	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerManager::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerManager::MoveRight);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ABasePlayer::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ABasePlayer::MoveRight);
 
 	// ジャンプ処理
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerManager::StartJump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &APlayerManager::EndJump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ABasePlayer::StartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ABasePlayer::EndJump);
 
 	// 視点回転処理
-	PlayerInputComponent->BindAxis("RotateView", this, &APlayerManager::RotateView);
+	PlayerInputComponent->BindAxis("RotateView", this, &ABasePlayer::RotateView);
 
 	// 視点初期化処理
-	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &APlayerManager::ResetView);
+	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &ABasePlayer::ResetView);
 }
 
 // 前後移動
-void APlayerManager::MoveForward(float Value)
+void ABasePlayer::MoveForward(float Value)
 {
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
 	AddMovementInput(Direction, Value);
 }
 
 // 左右移動
-void APlayerManager::MoveRight(float Value)
+void ABasePlayer::MoveRight(float Value)
 {
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, Value);
 }
 
 // ジャンプ開始処理
-void APlayerManager::StartJump()
+void ABasePlayer::StartJump()
 {
 	bPressedJump = true;
 }
 
 // ジャンプ終了処理
-void APlayerManager::EndJump()
+void ABasePlayer::EndJump()
 {
 	bPressedJump = false;
 }
 
 // 視点回転処理
-void APlayerManager::RotateView(float Value)
+void ABasePlayer::RotateView(float Value)
 {
 	MainCameraSpringArm->AddRelativeRotation(FRotator(0.0f, Value, 0.0f));
 }
 
 // 視点初期化処理
-void APlayerManager::ResetView()
+void ABasePlayer::ResetView()
 {
 	// プレイヤーの真後ろに配置するように角度を設定
 	MainCameraSpringArm->SetRelativeRotation(FRotator(SPRINGARM_PITCH, GetActorRotation().Yaw, 0.0f));
 }
 
-void APlayerManager::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	// 接触したActorのチェック
 	if ((OtherActor == nullptr) && (OtherActor == this) && (OtherComp == nullptr))

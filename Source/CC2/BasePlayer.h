@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "PlayerManager.generated.h"
+#include "BasePlayer.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
@@ -12,13 +12,13 @@ class UPlayModeWidget;
 class ATestUMGController;
 
 UCLASS()
-class CC2_API APlayerManager : public ACharacter
+class CC2_API ABasePlayer : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	APlayerManager();
+	ABasePlayer();
 
 protected:
 	// Called when the game starts or when spawned

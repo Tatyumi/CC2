@@ -3,10 +3,10 @@
 
 #include "CC2GameModeBase.h"
 #include "Blueprint/UserWidget.h"
-#include "PlayerManager.h"
+#include "BasePlayer.h"
 
 // コンストラクタ
 ACC2GameModeBase::ACC2GameModeBase()
 {
-	DefaultPawnClass = APlayerManager::StaticClass();
+	DefaultPawnClass = ABasePlayer::StaticClass();
 }
