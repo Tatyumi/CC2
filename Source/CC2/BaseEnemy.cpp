@@ -9,7 +9,7 @@
 #include "Kismet/KismetMathLibrary.h"
 
 // Ž‹“_‹——£
-static const float DISTANCE = 200.0f;
+static const float DISTANCE = 250.0f;
 
 // Sets default values
 ABaseEnemy::ABaseEnemy()
@@ -48,7 +48,6 @@ void ABaseEnemy::Tick(float DeltaTime)
 	FVector EndPos = (StartPos + (ForwardVec * DISTANCE));
 
 	DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Red, false, 1, 0, 1);
-	//DrawDebugCone(GetWorld(), StartPos, EndPos,100.0f,20.0f,10.0f,10, FColor::Red, false, 1, 0, 1);
 
 	FHitResult OutHit;
 	FCollisionQueryParams CollisionQueryParams;
