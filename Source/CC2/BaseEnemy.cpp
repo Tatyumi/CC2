@@ -7,6 +7,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Math/UnrealMathUtility.h"
 
 // 視点距離
 static const float DISTANCE = 250.0f;
@@ -16,6 +17,7 @@ ABaseEnemy::ABaseEnemy()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
 	// カプセルコンポーネントを取得
 	EnemyCollision = ABaseEnemy::GetCapsuleComponent();
 	if (EnemyCollision)
@@ -80,9 +82,12 @@ void ABaseEnemy::Tick(float DeltaTime)
 		// 初期位置に戻る
 		MoveSpecifiedPos(HomePos, BackSpeed, DeltaTime);
 
+
+		float xPos = FMath::Abs(HomePos.X) - FMath::Abs(EnemyCollision->GetComponentLocation().X);
+		float yPos =  FMath::Abs(HomePos.Y) - FMath::Abs(EnemyCollision->GetComponentLocation().Y);
+
 		// 初期位置に辿り着いたか判別
-		if (HomePos.X - EnemyCollision->GetComponentLocation().X <= 1.0f
-			&& HomePos.Y - EnemyCollision->GetComponentLocation().Y <= 1.0f)
+		if (-1.0f <= xPos && xPos <= 1.0f && -1.0f <= yPos && yPos  <= 1.0f)
 		{
 			// 辿り着いた場合
 
