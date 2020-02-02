@@ -2,12 +2,6 @@
 
 #include "BasePlayer.h"
 #include "CC2GameModeBase.h"
-
-#include "Camera/CameraComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "Kismet/GameplayStatics.h"
-
 #include "BaseItem.h"
 #include "PlayModeWidget.h"
 #include "LevelMover.h"
@@ -15,9 +9,17 @@
 #include "BaseEnemy.h"
 #include "EventOccurable.h"
 
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // スプリングアームのX軸角度
 static const float SPRINGARM_PITCH = -10.0f;
+
+// カメラ回転速度
+static const float CAMERA_ROTATE_SPEED = -1.5f;
 
 // Sets default values
 ABasePlayer::ABasePlayer()
@@ -122,7 +124,7 @@ void ABasePlayer::EndJump()
 // 視点回転処理
 void ABasePlayer::RotateView(float Value)
 {
-	MainCameraSpringArm->AddRelativeRotation(FRotator(0.0f, Value, 0.0f));
+	MainCameraSpringArm->AddRelativeRotation(FRotator(0.0f, Value * CAMERA_ROTATE_SPEED, 0.0f));
 }
 
 // 視点初期化処理
@@ -166,7 +168,7 @@ void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor*
 	// Enemyの場合
 	if (enemy)
 	{
-		// ゲームオーバー画面に遷移
+		// ゲームオーバーレベルに遷移
 		ULevelMover* levelMover = NewObject<ULevelMover>();
 		levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_GAMEOVER));
 

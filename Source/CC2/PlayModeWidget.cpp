@@ -19,8 +19,7 @@ void UPlayModeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-
-	// ワールドからAScoreStateを取得
+	// ワールドからスコアオブジェクトを取得
 	ScoreState = GetWorld() != NULL ? GetWorld()->GetGameState<AScoreState>() : NULL;
 
 	DisplayScore();

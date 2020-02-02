@@ -6,12 +6,13 @@
 #include "CC2GameModeBase.h"
 
 #include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AStartPoint::AStartPoint()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	// コンポーネント作成
@@ -29,14 +30,15 @@ AStartPoint::AStartPoint()
 void AStartPoint::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	// 表示
+	this->SetActorEnableCollision(true);
 }
 
 // Called every frame
 void AStartPoint::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AStartPoint::Event()

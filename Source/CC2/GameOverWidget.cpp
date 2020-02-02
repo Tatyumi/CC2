@@ -20,12 +20,14 @@ void UGameOverWidget::NativeConstruct()
 	}
 }
 
+// タイトル画面に遷移
 void UGameOverWidget::MoveTitle()
 {
 	ULevelMover* levelMover = NewObject<ULevelMover>();
 	levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_TITLE));
 }
 
+// 再開
 void UGameOverWidget::ReStart()
 {
 

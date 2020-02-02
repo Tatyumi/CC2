@@ -25,6 +25,7 @@ public:
 
 private:
 
+	// åªç›ÇÃÉXÉRÉA
 	UPROPERTY()
 		uint32 CurrentScore;
 };

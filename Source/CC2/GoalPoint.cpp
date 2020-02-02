@@ -30,6 +30,8 @@ void AGoalPoint::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// コリジョンを非表示
+	this->SetActorEnableCollision(false);
 }
 
 // Called every frame
@@ -38,6 +40,7 @@ void AGoalPoint::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+// イベント処理
 void AGoalPoint::Event()
 {
 	ACC2GameModeBase* gameMode = Cast<ACC2GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));

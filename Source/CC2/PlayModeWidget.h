@@ -37,15 +37,19 @@ public:
 
 public:
 
+	// メッセージ表示用パネル
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UCanvasPanel* MessagePnl;
 
+	// ゲームクリアパネル
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UCanvasPanel* GameClearPnl;
 
+	// スコアテキスト
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UTextBlock* ScoreTxt;
 
+	// スコアオブジェクト
 	UPROPERTY()
 		AScoreState* ScoreState;
 
@@ -57,9 +61,12 @@ protected:
 
 private:
 
+	// 表示時間
 	float DispTime;
 
+	// 経過時間
 	float DeltaTime;
 
+	// クリア後の待機時間
 	float ClaredWaitTime;
 };

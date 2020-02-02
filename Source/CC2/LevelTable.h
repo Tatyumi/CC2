@@ -6,10 +6,6 @@
 #include "Engine/DataTable.h"
 #include "LevelTable.generated.h"
 
-/**
- *
- */
-
 UENUM()
 enum class ELevels : uint8
 {
@@ -30,9 +26,11 @@ public:
 		ID = 0;
 	}
 
+	// ƒŒƒxƒ‹ID
 	UPROPERTY(EditAnywhere, category = "Level")
 		uint16 ID;
 
+	// ƒŒƒxƒ‹–¼
 	UPROPERTY(EditAnywhere, category = "Level")
 		FName LevelName;
 };

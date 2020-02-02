@@ -3,12 +3,14 @@
 
 #include "LevelMover.h"
 #include "Engine/DataTable.h"
+
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine.h"
 
 ULevelMover::ULevelMover()
 {
+	// ƒpƒX‚©‚çLevelData‚ÌŽæ“¾
 	static ConstructorHelpers::FObjectFinder<UDataTable>
 		LevelDataObject(TEXT("/Game/Blueprints/BP_LevelData"));
 

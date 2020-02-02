@@ -26,6 +26,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// ƒCƒxƒ“ƒgˆ—
 	virtual void Event() override;
 
 private:

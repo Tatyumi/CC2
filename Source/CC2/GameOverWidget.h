@@ -20,17 +20,21 @@ protected:
 
 private:
 
+	// タイトルに戻るボタン
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UButton* TitleBackBtn;
 
+	// リスタートボタン
 	UPROPERTY(EditAnywhere, Category = "UI", meta = (BindWidget))
 		UButton* ReStartBtn;
 
 private:
 
+	// タイトル画面に遷移
 	UFUNCTION()
 		void MoveTitle();
 
+	// 再開
 	UFUNCTION()
 		void ReStart();
 };
