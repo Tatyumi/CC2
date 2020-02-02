@@ -7,9 +7,9 @@
 #include "BaseLevelScriptActor.generated.h"
 
 class UUserWidget;
-/**
- * 
- */
+class AStartPoint;
+class AGoalPoint;
+
 UCLASS()
 class CC2_API ABaseLevelScriptActor : public ALevelScriptActor
 {
@@ -21,9 +21,24 @@ public:
 	UUserWidget* GetWidget() const { return Widget; }
 
 private:
+	UPROPERTY(EditAnywhere, Category = "Widget")
+		TSubclassOf<class UUserWidget>SubWidget;
+
+	UPROPERTY(EditAnywhere, Category = "Point")
+		TSubclassOf<class AStartPoint> SubStartPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Point")
+		TSubclassOf<class AGoalPoint> SubGoalPoint;
+
+	// ウィジット
 	UPROPERTY()
 		UUserWidget* Widget;
 
-	UPROPERTY(EditAnywhere, Category = "Widget")
-		TSubclassOf<class UUserWidget>SubWidget;
+	// スタート地点
+	UPROPERTY()
+		AStartPoint* StartPoint;
+
+	// ゴール地点
+	UPROPERTY()
+		AGoalPoint* GoalPoint;
 };

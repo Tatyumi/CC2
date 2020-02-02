@@ -2,11 +2,21 @@
 
 
 #include "CC2GameModeBase.h"
-#include "Blueprint/UserWidget.h"
 #include "BasePlayer.h"
 
-// コンストラクタ
+#include "Blueprint/UserWidget.h"
+
 ACC2GameModeBase::ACC2GameModeBase()
 {
 	DefaultPawnClass = ABasePlayer::StaticClass();
+}
+
+// イベントポイントのコリジョン切り替え
+void ACC2GameModeBase::SwitchEventPoints()
+{
+	for (auto eventPoint : EventPoints)
+	{
+		AActor* actor = Cast<AActor>(eventPoint);
+		actor->SetActorEnableCollision(!actor->GetActorEnableCollision());
+	}
 }

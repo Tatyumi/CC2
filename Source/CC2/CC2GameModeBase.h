@@ -22,7 +22,20 @@ public:
 	UFUNCTION()
 		UUserWidget* GetCurrentWidget()const { return CurrentWidget; }
 
+	UFUNCTION()
+		void SetEventPoint(AActor* Point) { this->EventPoints.Add(Point); }
+
+	// イベント地点の表示切替
+	UFUNCTION()
+		void SwitchEventPoints();
+
 private:
+
+	// 現在表示しているウィジット
 	UPROPERTY()
 		UUserWidget* CurrentWidget;
+
+	// イベント地点
+	UPROPERTY()
+		TArray<AActor*> EventPoints;
 };
