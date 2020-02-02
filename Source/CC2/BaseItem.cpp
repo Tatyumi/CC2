@@ -10,11 +10,15 @@
 
 // 回転速度
 static const float ROTATIOM_SPEED = 1.0f;
+// アイテムスコア
+static const int BASE_ITEM_SCORE = 100;
 
-// Sets default values
+// Sets default values// Sets default values
 ABaseItem::ABaseItem()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	Score = BASE_ITEM_SCORE;
 
 	// ボックスコンポーネント生成
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
@@ -36,15 +40,40 @@ ABaseItem::ABaseItem()
 			StaticMeshComponent->AttachTo(BoxComponent);
 		}
 	}
+}
 
-	Score = 100;
+ABaseItem::ABaseItem(int Score)
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	this->Score = Score;
+
+	// ボックスコンポーネント生成
+	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	if (BoxComponent)
+	{
+		BoxComponent->SetSimulatePhysics(false);
+		BoxComponent->SetCollisionProfileName(TEXT("Item"));
+		BoxComponent->SetGenerateOverlapEvents(true);
+	}
+
+	// スタティックコンポーネント生成
+	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
+	if (StaticMeshComponent)
+	{
+		StaticMeshComponent->SetSimulatePhysics(false);
+
+		if (BoxComponent)
+		{
+			StaticMeshComponent->AttachTo(BoxComponent);
+		}
+	}
 }
 
 // Called when the game starts or when spawned
 void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
