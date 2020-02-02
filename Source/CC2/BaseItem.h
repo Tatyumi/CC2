@@ -18,6 +18,8 @@ public:
 	// Sets default values for this actor's properties
 	ABaseItem();
 
+	ABaseItem(int Score);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,10 +36,10 @@ public:
 
 	// アイテム取得処理
 	UFUNCTION()
-		void Pickedup();
+		virtual void Pickedup();
 
-private:
+protected:
 
-	UPROPERTY()
+	// スコア
 		uint32 Score;
 };
