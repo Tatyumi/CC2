@@ -18,6 +18,8 @@ class CC2_API IInputModeSetable
 	GENERATED_BODY()
 
 public:
+
+	// “ü—Í‚ÉŠÖ‚·‚éİ’è‚ğs‚¤
 	UFUNCTION()
 		virtual void SetInputSetting();
 };
