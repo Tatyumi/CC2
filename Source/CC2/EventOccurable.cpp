@@ -8,5 +8,4 @@
 
 void IEventOccurable::Event()
 {
-	UE_LOG(LogTemp, Warning, TEXT("EventPoint Hit!"));
 }
