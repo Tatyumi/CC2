@@ -8,30 +8,48 @@
 void UGameOverWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-
-	if (TitleBackBtn)
-	{
-		TitleBackBtn->OnClicked.AddDynamic(this, &UGameOverWidget::MoveTitle);
-	}
-
-	if (ReStartBtn)
-	{
-		ReStartBtn->OnClicked.AddDynamic(this, &UGameOverWidget::ReStart);
-	}
 }
 
-// タイトル画面に遷移
-void UGameOverWidget::MoveTitle()
+
+// 入力に関する設定を行う
+void UGameOverWidget::SetInputSetting()
 {
-	ULevelMover* levelMover = NewObject<ULevelMover>();
-	levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_TITLE));
+	// UI入力モードに設定をする
+	this->SetKeyboardFocus();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(this->TakeWidget());
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	PlayerController->SetInputMode(InputModeData);
 }
 
-// 再開
-void UGameOverWidget::ReStart()
+// キー入力
+FReply UGameOverWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
 {
+	if (InKeyEvent.GetKey() == FKey("r"))
+	{
+		//MoveGameLevel();
+		ULevelMover* levelMover = NewObject<ULevelMover>();
 
-	ULevelMover* levelMover = NewObject<ULevelMover>();
-	// TODO死亡したステージを保持する変数から参照するようにする
-	levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_STAGE_ONE));
+		if (levelMover)
+		{
+			// 死亡したステージに移動
+			// TODO死亡したステージを保持する変数から参照するようにする
+			levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_STAGE_ONE));
+			return FReply::Handled();
+		}
+	}
+
+	if (InKeyEvent.GetKey() == FKey("t"))
+	{
+		ULevelMover* levelMover = NewObject<ULevelMover>();
+
+		if (levelMover)
+		{
+			// タイトルレベルに遷移
+			levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_TITLE));
+			return FReply::Handled();
+		}
+	}
+
+	return FReply::Unhandled();
 }
