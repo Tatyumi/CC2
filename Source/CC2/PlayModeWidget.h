@@ -36,7 +36,7 @@ public:
 	UFUNCTION()
 		void DispGameClearPnl();
 
-	// “ü—Í‚ÉŠÖ‚·‚é‚ğs‚¤
+	// “ü—Í‚ÉŠÖ‚·‚éİ’è‚ğs‚¤
 	virtual void SetInputSetting()override;
 
 public:
