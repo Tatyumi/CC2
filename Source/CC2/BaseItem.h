@@ -13,8 +13,8 @@ UCLASS()
 class CC2_API ABaseItem : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ABaseItem();
 
@@ -24,7 +24,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -38,8 +38,15 @@ public:
 	UFUNCTION()
 		virtual void Pickedup();
 
+private:
+
+	// コンポーネント初期化処理
+	UFUNCTION()
+		void InitializeComponent();
+
 protected:
 
 	// スコア
-		uint32 Score;
+	uint32 Score;
+
 };

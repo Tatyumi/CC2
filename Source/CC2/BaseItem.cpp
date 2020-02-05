@@ -14,60 +14,18 @@ static const float ROTATIOM_SPEED = 1.0f;
 static const int BASE_ITEM_SCORE = 100;
 
 // Sets default values// Sets default values
-ABaseItem::ABaseItem()
+ABaseItem::ABaseItem():Score(BASE_ITEM_SCORE)
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	Score = BASE_ITEM_SCORE;
-
-	// ボックスコンポーネント生成
-	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
-	if (BoxComponent)
-	{
-		BoxComponent->SetSimulatePhysics(false);
-		BoxComponent->SetCollisionProfileName(TEXT("Item"));
-		BoxComponent->SetGenerateOverlapEvents(true);
-	}
-
-	// スタティックコンポーネント生成
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-	if (StaticMeshComponent)
-	{
-		StaticMeshComponent->SetSimulatePhysics(false);
-
-		if (BoxComponent)
-		{
-			StaticMeshComponent->AttachTo(BoxComponent);
-		}
-	}
+	InitializeComponent();
 }
 
-ABaseItem::ABaseItem(int Score)
+ABaseItem::ABaseItem(const int Score):Score(Score)
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	this->Score = Score;
-
-	// ボックスコンポーネント生成
-	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
-	if (BoxComponent)
-	{
-		BoxComponent->SetSimulatePhysics(false);
-		BoxComponent->SetCollisionProfileName(TEXT("Item"));
-		BoxComponent->SetGenerateOverlapEvents(true);
-	}
-
-	// スタティックコンポーネント生成
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-	if (StaticMeshComponent)
-	{
-		StaticMeshComponent->SetSimulatePhysics(false);
-
-		if (BoxComponent)
-		{
-			StaticMeshComponent->AttachTo(BoxComponent);
-		}
-	}
+	InitializeComponent();
 }
 
 // Called when the game starts or when spawned
@@ -105,4 +63,29 @@ void ABaseItem::Pickedup()
 	// スコア加算処理
 	PlayModeWidget->DisplayAddScore(Score);
 	Destroy(this);
+}
+
+
+void ABaseItem::InitializeComponent()
+{
+	// ボックスコンポーネント生成
+	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	if (BoxComponent)
+	{
+		BoxComponent->SetSimulatePhysics(false);
+		BoxComponent->SetCollisionProfileName(TEXT("Item"));
+		BoxComponent->SetGenerateOverlapEvents(true);
+	}
+
+	// スタティックコンポーネント生成
+	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
+	if (StaticMeshComponent)
+	{
+		StaticMeshComponent->SetSimulatePhysics(false);
+
+		if (BoxComponent)
+		{
+			StaticMeshComponent->AttachTo(BoxComponent);
+		}
+	}
 }

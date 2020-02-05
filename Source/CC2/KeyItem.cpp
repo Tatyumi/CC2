@@ -12,7 +12,7 @@
 // アイテムスコア
 static const int KEY_ITEM_SCORE = 1000;
 
-AKeyItem::AKeyItem() : ABaseItem(KEY_ITEM_SCORE)
+AKeyItem::AKeyItem():ABaseItem(KEY_ITEM_SCORE)
 {
 }
 
