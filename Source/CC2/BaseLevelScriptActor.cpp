@@ -5,9 +5,11 @@
 #include "StartPoint.h"
 #include "GoalPoint.h"
 #include "CC2GameModeBase.h"
+#include "InputModeSetable.h"
 
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerController.h"
 
 // イベントポイントの座標
 static const FVector EVENT_POINT_POS = FVector(-810.0f, 10.0f, 110.0f);
@@ -27,6 +29,17 @@ void ABaseLevelScriptActor::BeginPlay()
 		{
 			// ウィジットを表示
 			Widget->AddToViewport();
+
+			// キー入力を受け付けるようにするためフォーカスを有効にずる
+			Widget->bIsFocusable = true;
+
+			IInputModeSetable* inputSetting = Cast<IInputModeSetable>(Widget);
+
+			if (inputSetting)
+			{
+				// 入力に関する設定を行う
+				inputSetting->SetInputSetting();
+			}
 
 			if (gameMode)
 			{

@@ -15,6 +15,7 @@ UPlayModeWidget::UPlayModeWidget(const FObjectInitializer& ObjectInitializer) :S
 	ClaredWaitTime = 5.0f;
 }
 
+
 void UPlayModeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -36,6 +37,7 @@ void UPlayModeWidget::NativeConstruct()
 		GameClearPnl->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }
+
 
 void UPlayModeWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
@@ -71,6 +73,7 @@ void UPlayModeWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	}
 }
 
+
 // スコア表示
 void UPlayModeWidget::DisplayScore()
 {
@@ -81,6 +84,7 @@ void UPlayModeWidget::DisplayScore()
 
 	ScoreTxt->SetText(FText::AsNumber(ScoreState->GetScore()));
 }
+
 
 // 加算後のスコア表示
 void UPlayModeWidget::DisplayAddScore(int Value)
@@ -96,14 +100,26 @@ void UPlayModeWidget::DisplayAddScore(int Value)
 	ScoreTxt->SetText(FText::AsNumber(ScoreState->GetScore()));
 }
 
+
 // メッセージパネルの表示
 void UPlayModeWidget::DispMessagePnl()
 {
 	MessagePnl->SetVisibility(ESlateVisibility::Visible);
 }
 
+
 // ゲームクリアパネルを表示
 void UPlayModeWidget::DispGameClearPnl()
 {
 	GameClearPnl->SetVisibility(ESlateVisibility::Visible);
+}
+
+
+// インプットに関する設定を行う
+void UPlayModeWidget::SetInputSetting()
+{
+	// ゲーム入力モードに設定をする
+	FInputModeGameOnly InputModeData;
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	PlayerController->SetInputMode(InputModeData);
 }

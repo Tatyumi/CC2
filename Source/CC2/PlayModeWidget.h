@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputModeSetable.h"
 #include "Blueprint/UserWidget.h"
 #include "PlayModeWidget.generated.h"
 
@@ -11,7 +12,7 @@ class UTextBlock;
 class UCanvasPanel;
 
 UCLASS()
-class CC2_API UPlayModeWidget : public UUserWidget
+class CC2_API UPlayModeWidget : public UUserWidget, public IInputModeSetable
 {
 	GENERATED_BODY()
 
@@ -34,6 +35,9 @@ public:
 	// メッセージパネルの表示
 	UFUNCTION()
 		void DispGameClearPnl();
+
+	// 入力に関するを行う
+	virtual void SetInputSetting()override;
 
 public:
 
