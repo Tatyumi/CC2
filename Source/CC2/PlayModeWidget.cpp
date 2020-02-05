@@ -8,11 +8,12 @@
 #include "Components/TextBlock.h"
 #include "Components/CanvasPanel.h"
 
-UPlayModeWidget::UPlayModeWidget(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
+UPlayModeWidget::UPlayModeWidget(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
+	, DispTime(4.0f)
+	, DeltaTime(0.0f)
+	, ClaredWaitTime(5.0f)
 {
-	DispTime = 4.0f;
-	DeltaTime = 0.0f;
-	ClaredWaitTime = 5.0f;
 }
 
 
