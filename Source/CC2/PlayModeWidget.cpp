@@ -69,7 +69,7 @@ void UPlayModeWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 			// 次のシーンに遷移する
 			ULevelMover* levelMover = NewObject<ULevelMover>();
 			// TODO 次のレベルを指定する仕組みを作る
-			levelMover->MoveLevel(GetWorld(),0);
+			levelMover->MoveLevel(GetWorld(), 0);
 		}
 	}
 }
