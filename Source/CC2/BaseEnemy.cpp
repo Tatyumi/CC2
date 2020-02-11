@@ -12,7 +12,9 @@
 static const float DISTANCE = 250.0f;
 
 // Sets default values
-ABaseEnemy::ABaseEnemy()
+ABaseEnemy::ABaseEnemy():
+	MoveSpeed(2.5f),
+	BackSpeed(1.0f)
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;

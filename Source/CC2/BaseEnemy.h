@@ -48,8 +48,8 @@ private:
 
 protected:
 	UPROPERTY(EditAnywhere)
-		float MoveSpeed = 2.0f;
+		float MoveSpeed;
 
 	UPROPERTY(EditAnywhere)
-		float BackSpeed = 1.0f;
+		float BackSpeed;
 };
