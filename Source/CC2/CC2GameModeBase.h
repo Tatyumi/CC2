@@ -29,6 +29,14 @@ public:
 	UFUNCTION()
 		void SwitchEventPoints();
 
+	// ポーズモード切替
+	UFUNCTION()
+		void SwitchPauseMode();
+
+protected:
+	virtual void BeginPlay() override;
+
+
 private:
 
 	// 現在表示しているウィジット
@@ -38,4 +46,14 @@ private:
 	// イベント地点
 	UPROPERTY()
 		TArray<AActor*> EventPoints;
+
+	// サブポーズウィジット
+	UPROPERTY(EditAnywhere, Category = "Widget")
+		TSubclassOf<class UUserWidget>SubPauseWidget;
+
+	// ポーズウィジット
+	UPROPERTY()
+		UUserWidget* PauseWidget;
+
+	bool IsPause;
 };

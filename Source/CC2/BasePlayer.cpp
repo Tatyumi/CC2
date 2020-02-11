@@ -93,6 +93,9 @@ void ABasePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	// 視点初期化処理
 	PlayerInputComponent->BindAction("InitializeView", IE_Pressed, this, &ABasePlayer::ResetView);
+
+	// ポーズ処理
+	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &ABasePlayer::Pause);
 }
 
 // 前後移動
@@ -174,4 +177,10 @@ void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor*
 
 		return;
 	}
+}
+
+void ABasePlayer::Pause()
+{
+	ACC2GameModeBase* gameMode = Cast<ACC2GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	gameMode->SwitchPauseMode();
 }
