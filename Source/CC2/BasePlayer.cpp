@@ -153,7 +153,6 @@ void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor*
 	if (item)
 	{
 		item->Pickedup();
-		return;
 	}
 
 	IEventOccurable* pointInterface = Cast<IEventOccurable>(OtherActor);
@@ -162,9 +161,7 @@ void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor*
 	if (pointInterface)
 	{
 		pointInterface->Event();
-		return;
 	}
-
 
 	ABaseEnemy* enemy = Cast<ABaseEnemy>(OtherActor);
 
@@ -174,8 +171,6 @@ void ABasePlayer::TriggerEnter(class UPrimitiveComponent* HitComp, class AActor*
 		// ゲームオーバーレベルに遷移
 		ULevelMover* levelMover = NewObject<ULevelMover>();
 		levelMover->MoveLevel(GetWorld(), static_cast<int>(ELevels::LEVEL_GAMEOVER));
-
-		return;
 	}
 }
 
